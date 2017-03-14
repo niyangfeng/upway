@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>旋转</title>
+	<style>
+	img{
+		margin-top: 200px;
+		margin-left: 300px;
+		animation: move1 3s linear infinite;
+		-webkit-animation: move1 3s linear infinite;
+	}
+		@keyframes move1{
+			from {
+				transform:  rotate(0deg) scale(1);
+			}
+			50%{
+				transform: rotate(180deg)  scale(2);
+			}
+			100%{
+				transform: rotate(360deg)  scale(1);
+			}
+		}
+		@-webkit-keyframes move1{
+			from {
+				-webkit-transform: rotate(0deg)  scale(1)
+			}
+			50%{
+				-webkit-transform: rotate(180deg)  scale(2)
+			}
+			100%{
+				-webkit-transform: rotate(360deg)  scale(1)
+			}
+		}
+	</style>
+</head>
+<body>
+	<img src="./img/sun.png" alt="sun">
+</body>
+</html>
