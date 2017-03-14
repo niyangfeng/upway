@@ -1,0 +1,124 @@
+/*Style initialization*/
+body{margin:0;padding:0;background:#400040;} 
+a{color:#2d374b;text-decoration:none} 
+a:hover{color:#cd0200;} 
+img{border:0;} 
+
+.bg {
+	position: relative;
+	width: 400px;
+	height: 180px;
+	margin-top: 200px;
+	border-radius: 10px;
+	background: url('./img/button-bg.jpg')
+}
+.bg>div{
+	position: absolute;
+	top: 30px;
+	left: 40px;
+	width: 320px;
+	height: 120px;
+}
+div>div{
+	position: relative;
+	width: 320px;
+	height: 120px;
+}
+div>a{
+	display: block;
+	text-align: center;
+	font-size: 28px;
+	line-height: 120px;
+	position: relative;
+	z-index: 2;
+	font-weight: bold;
+
+	/*文字显示隐藏*/
+	top: 14px;
+	opacity: 0;
+	-webkit-transition: opacity 0.5s linear,top 0.5s linear;
+	transition: opacity: 0.5s linear,top 0.5s linear;
+
+	/*流光效果*/
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent; 
+	background-image:-webkit-linear-gradient(left,yellow,red 25%,yellow 50%,red 75%,yellow 100%);
+	background-size: 200% 100%;
+}
+@keyframes gradient{
+	from{background-position: 0% 0%;}
+	to{background-position: -100% 0%;}
+}
+@-webkit-keyframes gradient{
+	from{background-position: 0% 0%;}
+	to{background-position: -100% 0%;}
+}
+.bg:hover a{
+	top: 0;
+	opacity: 1;
+	animation: gradient 3s linear infinite;
+	-webkit-animation: gradient 3s linear infinite;
+}
+
+/*模糊效果*/
+.bg::before{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url('./img/button-bg.jpg');
+	border-radius: 5px;
+	transition: filter 0.3s linear;
+	-webkit-transition: filter 0.3s linear;                                                                        ;
+}
+.bg:hover::before{
+	filter: blur(5px);
+}
+
+/*动态边框*/
+.top-bottom::before,.top-bottom::after,.left-right::before,.left-right::after{
+	content: '';
+	background: #FFFFFF;
+	position: absolute;
+	transition: transform 0.3s;
+	-webkit-transition: -webkit-transform 0.3s;
+	transition-timing-function: cubic-bezier(0.44,0.05,0.55,0.95) /*贝塞尔曲线*/
+	-webkit-transition-timing-function: cubic-bezier(0.44,0.05,0.55,0.95)
+}
+/*创建上下边框*/
+.left-right::before,.left-right::after{
+	width: 2px;
+	height: 100%;
+	top: 0;
+	transform: scale3d(0.1, 0, 1);
+	-webkit-transform:scale3d(0.1,0,1);
+}
+.left-right::before{
+	left: 0;
+}
+.left-right::after{
+	right: 0;
+}
+/*创建左右边框*/
+.top-bottom::before,.top-bottom::after{
+	height: 2px;
+	width: 100%;
+	left: 0;
+	transform: scale3d(0.1, 0, 1);
+	-webkit-transform: scale3d(0.1, 0, 1);
+}
+.top-bottom::before{
+	top: 0;
+}
+.top-bottom::after{
+	bottom: 0;
+}
+.bg:hover .top-bottom::before,
+.bg:hover .top-bottom::after,
+.bg:hover .left-right::before,
+.bg:hover .left-right::after{
+	transform: scale3d(1, 1, 1);
+	-webkit-transform: scale3d(1, 1, 1);
+}
